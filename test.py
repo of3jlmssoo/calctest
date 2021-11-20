@@ -10,7 +10,7 @@ class Calc(object):
 
     adjx = 50
     adjy = 610
-    adjx4input = 205
+    adjx4input = 233
     adjy4input = 640
     XY = {
         'plus': [51 + adjx, 125 + adjy],
@@ -136,6 +136,87 @@ calc.click_clear('clear')
 # for n in range(10):
 #     calc.typewrite_clear(str(n), str(n) + 'を入力')
 
-# 3.2.1.2 小数の入力 　操作エリアから「．」を入力することで、小数を表現できる。
-calc.click('period', '.を入力')
-calc.typewrite_clear('123', '小数点以下を入力')
+# # 3.2.1.2 小数の入力 　操作エリアから「．」を入力することで、小数を表現できる。
+# calc.click('period', '.を入力')
+# calc.typewrite('123', '小数点以下(123)を入力')
+# calc.click('plus', 'プラスを入力')
+# calc.click('one', '1を入力')
+# calc.click('period', '.を入力')
+# calc.typewrite('377', '小数点以下(377)を入力 => 1.5')
+# calc.click('equal', 'equalを入力(1.5)')
+
+# 3.2.1.3 演算子の入力 操作エリアから「加算・減算・乗算・除算・剰余」を
+# 表す、「＋」「－」「＊」「／」「％」を入力できる。
+
+# # 「＋」
+# calc.typewrite('123', '123を入力')
+# calc.click('plus', 'プラスを入力')
+# calc.typewrite('77', '77を入力')
+# calc.click('equal', 'equalを入力(200)')
+
+# calc.clear()
+
+# calc.typewrite('123', '123を入力')
+# calc.click('plus', 'プラスを入力')
+# calc.typewrite('73', '73を入力')
+# calc.click('plusandminus', 'プラス/マイナスを入力')
+# calc.click('equal', 'equalを入力(50)')
+
+
+# # 「－」
+# calc.clear()
+
+# calc.typewrite('123', '123を入力')
+# calc.click('minus', 'マイナスを入力')
+# calc.typewrite('23', '23を入力')
+# calc.click('equal', 'equalを入力(100)')
+
+# calc.clear()
+
+# calc.typewrite('10', '10を入力')
+# calc.click('minus', 'マイナスを入力')
+# calc.typewrite('30', '30を入力')
+# calc.click('equal', 'equalを入力(-20)')
+
+# # 「＊」
+# calc.clear()
+
+# calc.typewrite('10', '10を入力')
+# calc.click('asterisc', 'アスタリスクを入力')
+# calc.typewrite('30', '30を入力')
+# calc.click('equal', 'equalを入力(300)')
+
+# calc.clear()
+
+# calc.typewrite('10', '10を入力')
+# calc.click('asterisc', 'アスタリスクを入力')
+# calc.typewrite('30', '30を入力')
+# calc.click('plusandminus', 'プラス/マイナスを入力')
+# calc.click('equal', 'equalを入力(-300)')
+
+# # 「／」
+
+# calc.clear()
+
+# calc.typewrite('9', '9を入力')
+# calc.click('slash', 'スラッシュを入力')
+# calc.typewrite('4', '4を入力')
+# calc.click('equal', 'equalを入力(2.25)')
+
+# calc.clear()
+
+# calc.typewrite('9', '9を入力')
+# calc.click('slash', 'スラッシュを入力')
+# calc.typewrite('4', '4を入力')
+# calc.click('plusandminus', 'プラス/マイナスを入力')
+# calc.click('equal', 'equalを入力(-2.25)')
+
+
+# 「％」
+calc.clear()
+
+calc.typewrite('9', '9を入力')
+calc.click('percent', 'パーセントを入力')
+calc.typewrite('4', '4を入力')
+# calc.click('plusandminus', 'プラス/マイナスを入力')
+calc.click('equal', 'equalを入力(1)')
