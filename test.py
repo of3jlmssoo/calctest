@@ -8,8 +8,10 @@ class Calc(object):
     def __init__(self) -> None:
         pyautogui.PAUSE = 0
 
-    adjx = 0
-    adjy = 0
+    adjx = 50
+    adjy = 610
+    adjx4input = 205
+    adjy4input = 640
     XY = {
         'plus': [51 + adjx, 125 + adjy],
         'minus': [126 + adjx, 125 + adjy],
@@ -32,7 +34,7 @@ class Calc(object):
         'percent': [183 + adjx, 368 + adjy],
         'plusandminus': [242 + adjx, 368 + adjy],
 
-        'input': [77 + adjx, 77 + adjy]
+        'input': [77 + adjx4input, 77 + adjy4input]
     }
     zero2nine = [
         'zero',
@@ -47,8 +49,13 @@ class Calc(object):
         'nine']
 
     def typewrite(self, input, message=False):
-        self.moveTo('input')
-        self.click()
+        # self.moveTo('input')
+        # self.click()
+        pyautogui.click(
+            self.XY['input'][0],
+            self.XY['input'][1],
+            clicks=1,
+            interval=0.5)
         pyautogui.typewrite(input)
 
         if message:
@@ -120,14 +127,15 @@ calc = Calc()
 
 calc.click_clear('clear')
 
-print('クリックして0～9を入力できる。')
+# # print('クリックして0～9を入力できる。')
+# for n in range(10):
+#     calc.click_clear(calc.zero2nine[n], str(n) + 'をクリック')
 
-for n in range(10):
-    calc.click_clear(calc.zero2nine[n], str(n) + 'をクリック')
-
-# 3.2.1.1 整数の入力 　操作エリアから0～9を入力できる。
-print('\n3.2.1.1 整数の入力 　操作エリアから0～9を入力できる。')
-for n in range(10):
-    calc.typewrite_clear(str(n), str(n) + 'を入力')
+# # 3.2.1.1 整数の入力 　操作エリアから0～9を入力できる。
+# print('\n3.2.1.1 整数の入力 　操作エリアから0～9を入力できる。')
+# for n in range(10):
+#     calc.typewrite_clear(str(n), str(n) + 'を入力')
 
 # 3.2.1.2 小数の入力 　操作エリアから「．」を入力することで、小数を表現できる。
+calc.click('period', '.を入力')
+calc.typewrite_clear('123', '小数点以下を入力')
