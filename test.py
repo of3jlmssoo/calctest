@@ -213,10 +213,25 @@ calc.click_clear('clear')
 
 
 # 「％」
+# calc.clear()
+
+# calc.typewrite('9', '9を入力')
+# calc.click('percent', 'パーセントを入力')
+# calc.typewrite('4', '4を入力')
+# calc.click('equal', 'equalを入力(1)')
+
+# calc.clear()
+
+
+# 3.2.1.4 特殊演算の入力 　四則演算・剰余以外の特殊な演算として、
+# 操作エリアから、「平方根」「符号反転」を表す、「√」「＋／－」を入力できる。
+
 calc.clear()
 
 calc.typewrite('9', '9を入力')
-calc.click('percent', 'パーセントを入力')
+calc.click('root', 'ルートを入力(3)')
+
+calc.clear()
+
 calc.typewrite('4', '4を入力')
-# calc.click('plusandminus', 'プラス/マイナスを入力')
-calc.click('equal', 'equalを入力(1)')
+calc.click('plusandminus', 'プラス/マイナスを入力(-4)')
