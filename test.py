@@ -8,10 +8,17 @@ class Calc(object):
     def __init__(self) -> None:
         pyautogui.PAUSE = 0
 
-    adjx = 50
-    adjy = 610
-    adjx4input = 233
-    adjy4input = 640
+    if (True):
+        adjx = 0
+        adjy = 0
+        adjx4input = 0
+        adjy4input = 0
+    else:
+        adjx = 50
+        adjy = 610
+        adjx4input = 233
+        adjy4input = 640
+
     XY = {
         'plus': [51 + adjx, 125 + adjy],
         'minus': [126 + adjx, 125 + adjy],
@@ -68,6 +75,8 @@ class Calc(object):
     def click(self, pos=False, message=False):
 
         if pos:
+
+            # print(f'{self.XY[pos][0]=}, {self.XY[pos][1]=}')
             pyautogui.click(
                 self.XY[pos][0],
                 self.XY[pos][1],
@@ -226,12 +235,62 @@ calc.click_clear('clear')
 # 3.2.1.4 特殊演算の入力 　四則演算・剰余以外の特殊な演算として、
 # 操作エリアから、「平方根」「符号反転」を表す、「√」「＋／－」を入力できる。
 
+# calc.clear()
+
+# calc.typewrite('9', '9を入力')
+# calc.click('root', 'ルートを入力(3)')
+
+# calc.clear()
+
+# calc.typewrite('4', '4を入力')
+# calc.click('plusandminus', 'プラス/マイナスを入力(-4)')
+
+
+# 3.2.2.2 繰り返し演算 　一度演算した後、繰り返し演算が実行できる。
+
+# calc.clear()
+# calc.click('one', '1を入力')
+# calc.click('plus', '+を入力')
+# calc.click('two', '2を入力')
+# calc.click('equal', '=を入力(3)')
+# calc.click('plus', '+を入力')
+# calc.click('seven', '7を入力')
+# calc.click('equal', '=を入力(10)')
+
+# 3.2.4 表示機能
+# 操作エリアからの入力情報や演算結果は、表示エリアに表示できる。なお、入出力する桁数は、
+# 最大で整数部 3 桁、小数部 3 桁とする（○○○.○○○）。
+# calc.clear()
+# calc.click('one', '(整数部3桁入力)1を入力')
+# calc.click('two', '(整数部3桁入力)2を入力')
+# calc.click('three', '(整数部3桁入力)3を入力(123)')
+
+# calc.clear()
+# calc.click('one', '(整数部4桁入力)1を入力')
+# calc.click('two', '(整数部4桁入力)2を入力')
+# calc.click('three', '(整数部4桁入力)3を入力(123)')
+# calc.click('four', '(整数部4桁入力)4を入力(123)')
+
+# calc.clear()
+# calc.click('zero', '(小数部3桁入力)0を入力')
+# calc.click('period', '(小数部3桁入力).を入力')
+# calc.click('one', '(小数部3桁入力)1を入力')
+# calc.click('two', '(小数部3桁入力)2を入力')
+# calc.click('three', '(小数部3桁入力)3を入力(0.123)')
+
+# calc.clear()
+# calc.click('zero', '(小数部4桁入力)0を入力')
+# calc.click('period', '(小数部4桁入力).を入力')
+# calc.click('one', '(小数部4桁入力)1を入力')
+# calc.click('two', '(小数部4桁入力)2を入力')
+# calc.click('three', '(小数部4桁入力)3を入力(0.123)')
+# calc.click('four', '(小数部4桁入力)4を入力(0.123)')
+
 calc.clear()
-
-calc.typewrite('9', '9を入力')
-calc.click('root', 'ルートを入力(3)')
-
-calc.clear()
-
-calc.typewrite('4', '4を入力')
-calc.click('plusandminus', 'プラス/マイナスを入力(-4)')
+calc.click('one', '(整3+小3桁入力)1を入力')
+calc.click('two', '(整3+小3桁入力)2を入力')
+calc.click('three', '(整数部3桁入力)3を入力(123)')
+calc.click('period', '(小数部4桁入力).を入力')
+calc.click('four', '(小数部4桁入力)4を入力(0.123)')
+calc.click('five', '(小数部4桁入力)5を入力(0.123)')
+calc.click('six', '(小数部4桁入力)6を入力(0.123)')
