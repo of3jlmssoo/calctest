@@ -8,7 +8,7 @@ class Calc(object):
     def __init__(self) -> None:
         pyautogui.PAUSE = 0
 
-    if (True):
+    if (False):
         adjx = 0
         adjy = 0
         adjx4input = 0
@@ -289,8 +289,8 @@ calc.click_clear('clear')
 calc.clear()
 calc.click('one', '(整3+小3桁入力)1を入力')
 calc.click('two', '(整3+小3桁入力)2を入力')
-calc.click('three', '(整数部3桁入力)3を入力(123)')
-calc.click('period', '(小数部4桁入力).を入力')
-calc.click('four', '(小数部4桁入力)4を入力(0.123)')
-calc.click('five', '(小数部4桁入力)5を入力(0.123)')
-calc.click('six', '(小数部4桁入力)6を入力(0.123)')
+calc.click('three', '(整3+小3桁入力)3を入力(123)')
+calc.click('period', '(整3+小3桁入力).を入力')
+calc.click('four', '(整3+小3桁入力)4を入力')
+calc.click('five', '(整3+小3桁入力)5を入力')
+calc.click('six', '(整3+小3桁入力)6を入力(123.456)')
