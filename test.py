@@ -286,11 +286,46 @@ calc.click_clear('clear')
 # calc.click('three', '(小数部4桁入力)3を入力(0.123)')
 # calc.click('four', '(小数部4桁入力)4を入力(0.123)')
 
-calc.clear()
-calc.click('one', '(整3+小3桁入力)1を入力')
-calc.click('two', '(整3+小3桁入力)2を入力')
-calc.click('three', '(整3+小3桁入力)3を入力(123)')
-calc.click('period', '(整3+小3桁入力).を入力')
-calc.click('four', '(整3+小3桁入力)4を入力')
-calc.click('five', '(整3+小3桁入力)5を入力')
-calc.click('six', '(整3+小3桁入力)6を入力(123.456)')
+# calc.clear()
+# calc.click('one', '(整3+小3桁入力)1を入力')
+# calc.click('two', '(整3+小3桁入力)2を入力')
+# calc.click('three', '(整3+小3桁入力)3を入力(123)')
+# calc.click('period', '(整3+小3桁入力).を入力')
+# calc.click('four', '(整3+小3桁入力)4を入力')
+# calc.click('five', '(整3+小3桁入力)5を入力')
+# calc.click('six', '(整3+小3桁入力)6を入力(123.456)')
+
+
+def convert2input(input, output):
+
+    result = 0
+    target = ''
+
+    input_list = input.split()
+    for i in input_list:
+        if i not in [
+            '+',
+            '-',
+            '*',
+            '/',
+            '=',
+            'C',
+            '√',
+            'root',
+            '%',
+                'plusandminus']:
+            print(f'type {i}')
+        else:
+            print(f'click {i}')
+
+        if i == '=':
+            result = eval(target)
+            # print(f'{result=} {target=}')
+            target = result
+        else:
+            target = str(target) + i
+    print(f'{input} {result=} == {output}')
+
+
+convert2input('1 + 3 = * 4 =', 16)
+convert2input('1.5 + 3.3 = * 4 =', 19.2)
