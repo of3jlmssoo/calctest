@@ -8,7 +8,7 @@ class Calc(object):
     def __init__(self) -> None:
         pyautogui.PAUSE = 0
 
-    if (False):
+    if (True):
         adjx = 0
         adjy = 0
         adjx4input = 0
@@ -43,6 +43,7 @@ class Calc(object):
 
         'input': [77 + adjx4input, 77 + adjy4input]
     }
+
     zero2nine = [
         'zero',
         'one',
@@ -296,36 +297,46 @@ calc.click_clear('clear')
 # calc.click('six', '(整3+小3桁入力)6を入力(123.456)')
 
 
-def convert2input(input, output):
+calcchar = {'+': 'plus', '-': 'minus', '*': 'asterisc', '/': 'slush'}
 
+
+def convert2input(input, output):
+    """
+    '1 + 3 = * 4 =' の場合
+        eval        pyautogui
+    1   1           typewrite(1)
+    +   1 +         click('+')
+    3   1 + 3       typewrite(3)
+    =   r=eval(1+3) click('=')
+    *   r *         click(*)
+    4   r * 4       typewrite(4)
+    =   r=eval(r*4) click('=')
+
+    """
     result = 0
     target = ''
 
     input_list = input.split()
     for i in input_list:
-        if i not in [
-            '+',
-            '-',
-            '*',
-            '/',
-            '=',
-            'C',
-            '√',
-            'root',
-            '%',
-                'plusandminus']:
-            print(f'type {i}')
-        else:
-            print(f'click {i}')
+        # if i not in ['+', '-', '*', '/', '=', '%']:
+        #     print(f'type {i}')
+        # else:
+        #     print(f'click {i}')
 
         if i == '=':
+            # calc.typewrite(str(target), f'{target}')
+            calc.click('equal', '= was typed')
             result = eval(target)
-            # print(f'{result=} {target=}')
-            target = result
+            target = str(result)
+        elif i in ['+', '-', '*', '/']:
+            calc.click(calcchar[i], f'click {i}')
+            target = target + i
         else:
-            target = str(target) + i
-    print(f'{input} {result=} == {output}')
+            calc.typewrite(i, f'{i} was typed')
+            target = target + i
+    print(f'{input} : eval result {result} and calc result {output}')
 
 
-convert2input('1 + 3 = * 4 =', 16)
+# convert2input('1 + 3 =', 4)
+# convert2input('1 + 3 = * 4 =', 16)
 convert2input('1.5 + 3.3 = * 4 =', 19.2)
