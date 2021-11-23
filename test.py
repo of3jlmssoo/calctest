@@ -12,7 +12,7 @@ class Calc(object):
     def __init__(self) -> None:
         pyautogui.PAUSE = 0
 
-    if (False):
+    if (True):
         adjx = 0
         adjy = 0
         adjx4input = 0
@@ -123,7 +123,7 @@ class Calc(object):
         result = pyautogui.confirm(message)
         print(f'{message} {result}')
 
-    def convert2input(self, input, output):
+    def convert2input(self, input, output, func):
         """
         '1 + 3 = * 4 =' の場合
             eval        pyautogui
@@ -148,40 +148,38 @@ class Calc(object):
 
             if i == '=':
                 # calc.typewrite(str(target), f'{target}')
-                calc.click('equal', '= was typed')
+                self.click('equal', '= was typed')
                 result = eval(target)
                 target = str(result)
             elif i in self.calcchar.keys():
-                calc.click(self.calcchar[i], f'click {i}')
+                self.click(self.calcchar[i], f'click {i}')
                 target = target + i
             else:
-                calc.typewrite(i, f'{i} was typed')
+                # calc.typewrite(i, f'{i} was typed')
+                func(i, f'{i} was typed')
                 target = target + i
         self.confirm(f'{input} : eval result {result} and result {output}')
 
+    def click_string(self, str, message):
+        # print(f'{str=}')
+        for s in str:
+            # print(f'{s=} {self.zero2nine[int(s)]}')
+            if s == '.':
+                self.click('period')
+                continue
+            if s in '0123456789':
+                self.click(self.zero2nine[int(s)])
+                continue
+            print(f'input {str} is valid?')
+        self.confirm(f'{str} typed')
 
-# pyautogui.moveTo(XY['plus'][0], XY['plus'][1])
-# pyautogui.moveTo(XY['minus'][0], XY['minus'][1])
-# pyautogui.moveTo(XY['asterisc'][0], XY['asterisc'][1])
-# pyautogui.moveTo(XY['slash'][0], XY['slash'][1])
-# pyautogui.moveTo(XY['one'][0], XY['one'][1])
-# pyautogui.moveTo(XY['two'][0], XY['two'][1])
-# pyautogui.moveTo(XY['three'][0], XY['three'][1])
-# pyautogui.moveTo(XY['equal'][0], XY['equal'][1])
-# pyautogui.moveTo(XY['four'][0], XY['four'][1])
-# pyautogui.moveTo(XY['five'][0], XY['five'][1])
-# pyautogui.moveTo(XY['clear'][0], XY['clear'][1])
-# pyautogui.moveTo(XY['seven'][0], XY['seven'][1])
-# pyautogui.moveTo(XY['eight'][0], XY['eight'][1])
-# pyautogui.moveTo(XY['nine'][0], XY['nine'][1])
-# pyautogui.moveTo(XY['zero'][0], XY['zero'][1])
-# pyautogui.moveTo(XY['period'][0], XY['period'][1])
-# pyautogui.moveTo(XY['root'][0], XY['root'][1])
-# pyautogui.moveTo(XY['percent'][0], XY['percent'][1])
-# pyautogui.moveTo(XY['plusandminus'][0], XY['plusandminus'][1])
+# region
+
+
 calc = Calc()
 
 calc.click_clear('clear')
+
 
 # # 3.3.1 初期処理 プログラムを開始すると、入力待ちモードに遷移する。また、「＝」ボタンは無効化する。
 # print('\n3.3.1 初期処理 プログラムを開始すると、入力待ちモードに遷移する。また、「＝」ボタンは無効化する。')
@@ -481,46 +479,53 @@ print('\n3.3.2.2 入力処理 1 モード、入力処理 2 モード')
 # print('\n3.3.3.2 入力待ちモード')
 # calc.clear()
 # calc.confirm('最初の演算(=を入力)後+を入力した時点で「＋、－、＊、／、％」ボタンを無効化、「＝」ボタンを有効化')
-# calc.convert2input('1 + 3 = + 4 =', 8)
+
+# endregion
+# calc.clear()
+# calc.convert2input('1 + 3 = + 4 =', 8, calc.typewrite)
+# calc.clear()
+# calc.convert2input('2 + 3 = + 4 =', 9, calc.click_string)
+# calc.clear()
+# calc.convert2input('122 + 8 = + 5 =', 135, calc.click_string)
 
 # calc.clear()
 # calc.confirm('最初の演算(=を入力)後-を入力した時点で「＋、－、＊、／、％」ボタンを無効化、「＝」ボタンを有効化')
-# calc.convert2input('1 + 3 = - 4 =', 0)
+# calc.convert2input('1 + 3 = - 4 =', 0, calc.click_string)
 
 # calc.clear()
 # calc.confirm('最初の演算(=を入力)後*を入力した時点で「＋、－、＊、／、％」ボタンを無効化、「＝」ボタンを有効化')
-# calc.convert2input('1 + 3 = * 4 =', 16)
+# calc.convert2input('1 + 3 = * 4 =', 16, calc.click_string)
 
 # calc.clear()
 # calc.confirm('最初の演算(=を入力)後/を入力した時点で「＋、－、＊、／、％」ボタンを無効化、「＝」ボタンを有効化')
-# calc.convert2input('1 + 3 = / 4 =', 1)
+# calc.convert2input('1 + 3 = / 4 =', 1, calc.click_string)
 
 # calc.clear()
 # calc.confirm('最初の演算(=を入力)後%を入力した時点で「＋、－、＊、／、％」ボタンを無効化、「＝」ボタンを有効化')
-# calc.convert2input('1 + 3 = % 3 =', 1)
+# calc.convert2input('1 + 3 = % 3 =', 1, calc.click_string)
 
 # calc.clear()
-# calc.convert2input('1.5 + 3.3 = * 4 =', 19.2)
+# calc.convert2input('1.5 + 3.3 = * 4 =', 19.2, calc.click_string)
 # calc.clear()
-# calc.convert2input('999.999 * 999.999 =', 999998.000001)
+# calc.convert2input('999.999 * 999.999 =', 999998.000001, calc.click_string)
 
 
-# 3.3.4.1 入力待ちモード、入力処理 1 モード、入力処理 2 モード
-# > 　特殊演算を行う場合は、演算結果を表示エリアに表示する。
-# >
-# > 表示エリアが空欄以外で、√ を入力する場合は、表示エリアの入力情報から平方根を演算し、表示エリアに表示する。なお、出力が小数第 4 位以降となる場合は、小数第 4 位を四捨五入し、3 桁で表示する。
-# > 表示エリアが空欄以外で、＋／－を入力する場合は、表示エリアの入力情報から符号を反転し、表示エリアに表示する。
-print('\n3.3.4.1 入力待ちモード、入力処理 1 モード、入力処理 2 モード')
-# root
+# # 3.3.4.1 入力待ちモード、入力処理 1 モード、入力処理 2 モード
+# # > 　特殊演算を行う場合は、演算結果を表示エリアに表示する。
+# # >
+# # > 表示エリアが空欄以外で、√ を入力する場合は、表示エリアの入力情報から平方根を演算し、表示エリアに表示する。なお、出力が小数第 4 位以降となる場合は、小数第 4 位を四捨五入し、3 桁で表示する。
+# # > 表示エリアが空欄以外で、＋／－を入力する場合は、表示エリアの入力情報から符号を反転し、表示エリアに表示する。
+# print('\n3.3.4.1 入力待ちモード、入力処理 1 モード、入力処理 2 モード')
+# # root
+# # calc.clear()
+# # calc.click('root', 'rootをクリックしても何も起きない')
+# # calc.click('nine', '9をクリック')
+# # calc.click('root', f'rootをクリック。{math.sqrt(9)}')
 # calc.clear()
-# calc.click('root', 'rootをクリックしても何も起きない')
-# calc.click('nine', '9をクリック')
-# calc.click('root', f'rootをクリック。{math.sqrt(9)}')
-calc.clear()
-calc.click('three', '3をクリック')
-result = Decimal(str(math.sqrt(3))).quantize(
-    Decimal('0.001'), rounding=ROUND_HALF_UP)
-calc.click('root', f'rootをクリック。{result}')
+# calc.click('three', '3をクリック')
+# result = Decimal(str(math.sqrt(3))).quantize(
+#     Decimal('0.001'), rounding=ROUND_HALF_UP)
+# calc.click('root', f'rootをクリック。{result}')
 
 # + and -
 
