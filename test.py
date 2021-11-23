@@ -160,7 +160,7 @@ class Calc(object):
                 target = target + i
         self.confirm(f'{input} : eval result {result} and result {output}')
 
-    def click_string(self, str, message):
+    def click_string(self, str, message=''):
         # print(f'{str=}')
         for s in str:
             # print(f'{s=} {self.zero2nine[int(s)]}')
@@ -528,6 +528,30 @@ print('\n3.3.2.2 入力処理 1 モード、入力処理 2 モード')
 # calc.click('root', f'rootをクリック。{result}')
 
 # + and -
+# calc.clear()
+# calc.confirm('何も無い状態でプラス・マイナスを押す')
+# calc.click('plusandminus')
+# calc.confirm('何も起きない')
+
+# calc.clear()
+# for str in ['456', '123.456', '0.000', '999.999']:
+#     calc.click_string(str)
+#     calc.click('plusandminus')
+#     calc.confirm(f'{str} to -{str}')
+#     calc.clear()
+
+# calc.clear()
+# for str in ['456', '123.456', '0.000', '999.999']:
+#     calc.click_string(str)
+#     calc.click('plusandminus')
+#     calc.confirm('マイナス')
+#     calc.click('plusandminus')
+#     calc.confirm('プラス')
+#     calc.click('plusandminus')
+#     calc.confirm('マイナス')
+#     calc.clear()
+
+
 
 # 3.3.5 クリアイベント
 # > 3.3.5.1 入力待ちモード、入力処理 1 モード、入力処理 2 モード
