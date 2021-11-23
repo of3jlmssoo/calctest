@@ -12,7 +12,7 @@ class Calc(object):
     def __init__(self) -> None:
         pyautogui.PAUSE = 0
 
-    if (True):
+    if (False):
         adjx = 0
         adjy = 0
         adjx4input = 0
