@@ -155,9 +155,12 @@ class Calc(object):
                 self.click('equal', '= was typed')
                 result = eval(target)
                 target = str(result)
-            elif i in self.calcchar.keys():
+            elif i in self.calcchar.keys():  # '+': 'plus', '-': 'minus', '*': 'asterisc', '/': 'slash', '%': 'percent'}
                 self.click(self.calcchar[i], f'click {i}')
                 target = target + i
+            elif i == 'c' or i == 'C':
+                self.clear()
+                target = ''
             else:
                 # calc.typewrite(i, f'{i} was typed')
                 func(i, f'{i} was typed')
@@ -563,29 +566,127 @@ print('\n3.3.2.2 入力処理 1 モード、入力処理 2 モード')
 #     calc.clear()
 
 
-# 3.3.5 クリアイベント
-# > 3.3.5.1 入力待ちモード、入力処理 1 モード、入力処理 2 モード
-# > 　「C」を選択した場合は、表示エリアの文字、表示エリアと演算子の入力情報、ボタンの状態を初期状態に戻す。
-# また、入力待ちモードに遷移する。
-print('\n3.3.5 クリアイベント')
-
-
+# # 3.3.5 クリアイベント
+# # > 3.3.5.1 入力待ちモード、入力処理 1 モード、入力処理 2 モード
+# # > 　「C」を選択した場合は、表示エリアの文字、表示エリアと演算子の入力情報、ボタンの状態を初期状態に戻す。
+# # また、入力待ちモードに遷移する。
+# print('\n3.3.5 クリアイベント')
+# calc.confirm('2の入力後Cがクリックされる。この時点で=のみ無効であることを確認する')
+# calc.convert2input('1 + 2 C', 0, calc.click_string)
+# calc.confirm('入力待ちモード。=だけ無効化されていることを確認する')
+# calc.convert2input('3 + 4 =', 7, calc.click_string)
 
 # 3.3.6.1 入力待ちモード、入力処理 2 モード
+print('3.3.6.1 入力待ちモード、入力処理 2 モード')
 # > 　表示エリアが空欄でない状態で、「＝」ボタンを選択した場合、下記の演算結果を表示エリアに表示し、入力待ちモードに遷移する。遷移する際、「＋、－、＊、／、％」ボタンを有効化し、＝」を無効化する。
 # なお、出力結果は、小数となる場合は、小数第 4 位を四捨五入し、3 桁として表示する。
 # >
 # > 通常の演算の場合
 # > 演算子が「＋」の場合
 # > 演算結果＝入力処理 1 モードの入力情報＋入力処理 2 モードの入力情報
+
+# calc.clear()
+# calc.click('one', '1を入力')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('two', '2を入力(12になる)')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('three', '3を入力(123になる)')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('plus', '+を入力(=が有効化されるが表示エリアは空白')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明')
+# calc.click('seven', '7を入力')
+# calc.confirm('=が有効化されていることを確認。まだ押なさい')
+# calc.click('seven', '7を入力')
+# calc.click('equal', '=を入力(200)。=が無効化されることを確認する')
+# calc.confirm('ここから繰り返し演算')
+# calc.click('plus', '+を入力(=が有効化されるが表示エリアは空白')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明')
+# calc.click_string('145')
+# calc.click('equal', '=を入力(345)。=が無効化されることを確認する')
+
 # > 演算子が「－」の場合
 # > 演算結果＝入力処理 1 モードの入力情報－入力処理 2 モードの入力情報
+
+# calc.clear()
+# calc.click('one', '1を入力')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('two', '2を入力(12になる)')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('three', '3を入力(123になる)')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('minus', '-を入力(=が有効化されるが表示エリアは空白)')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明)')
+# calc.click('two', '2を入力')
+# calc.confirm('=が有効化されていることを確認。まだ押なさい')
+# calc.click('three', '3を入力')
+# calc.click('equal', '=を入力(100)。=が無効化されることを確認する')
+# calc.confirm('ここから繰り返し演算')
+# calc.click('minus', '-を入力(=が有効化されるが表示エリアは空白)')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明)')
+# calc.click_string('77')
+# calc.click('equal', '=を入力(23)。=が無効化されることを確認する')
+
 # > 演算子が「＊」の場合
 # > 演算結果＝入力処理 1 モードの入力情報＊入力処理 2 モードの入力情報
+# calc.clear()
+# calc.click_string('0.123')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('asterisc', '*を入力(=が有効化されるが表示エリアは空白)')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明')
+# calc.click_string('0.456')
+# calc.confirm('=が有効化されていることを確認')
+# calc.click('equal', '=を入力(0.056)。=が無効化されることを確認する')
+# calc.confirm('ここから繰り返し演算')
+# calc.click('asterisc', '*を入力(=が有効化されるが表示エリアは空白)')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明')
+# calc.click_string('999.999')
+# calc.click('equal', '=を入力(56)。=が無効化されることを確認する')
+
+
 # > 演算子が「／」の場合
 # > 演算結果＝入力処理 1 モードの入力情報／入力処理 2 モードの入力情報
-# > 演算子が「％」の場合
-# > 演算結果＝入力処理 1 モードの入力情報％入力処理 2 モードの入力情報
+# calc.clear()
+# calc.click_string('0.123')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('slash', 'slashを入力(=が有効化されるが表示エリアは空白)')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明')
+# calc.click_string('0.456')
+# calc.confirm('=が有効化されていることを確認')
+# calc.click('equal', '=を入力(0.27)。=が無効化されることを確認する')
+# calc.confirm('ここから繰り返し演算')
+# calc.click('slash', 'slashを入力(=が有効化されるが表示エリアは空白)')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明')
+# calc.click_string('333.333')
+# calc.click('equal', '=を入力(0.001)。=が無効化されることを確認する')
+
+
+# # > 演算子が「％」の場合
+# # > 演算結果＝入力処理 1 モードの入力情報％入力処理 2 モードの入力情報
+# calc.clear()
+# calc.click_string('8')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('percent', '%を入力(=が有効化されるが表示エリアは空白)')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明')
+# calc.click_string('3')
+# calc.confirm('=が有効化されていることを確認')
+# calc.click('equal', '=を入力(2)。=が無効化されることを確認する')
+
+# calc.clear()
+# calc.click_string('89')
+# calc.confirm('=が無効化されていることを確認')
+# calc.click('percent', '%を入力(=が有効化されるが表示エリアは空白)')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明')
+# calc.click_string('9')
+# calc.confirm('=が有効化されていることを確認')
+# calc.click('equal', '=を入力(8)。=が無効化されることを確認する')
+
+# calc.confirm('ここから繰り返し演算')
+# calc.click('percent', '%を入力(=が有効化されるが表示エリアは空白)')
+# calc.confirm('=が有効化されるが表示エリアは空白。これが正しいか不明')
+# calc.click_string('3')
+# calc.click('equal', '=を入力(2)。=が無効化されることを確認する')
+
+
 # > 繰り返し演算の場合
 # > 演算子が「＋」の場合
 # > 演算結果＝入力待ちモードの入力情報＋入力処理 2 モードの入力情報
@@ -597,60 +698,40 @@ print('\n3.3.5 クリアイベント')
 # > 演算結果＝入力待ちモードの入力情報／入力処理 2 モードの入力情報
 # > 演算子が「％」の場合
 # > 演算結果＝入力待ちモードの入力情報％入力処理 2 モードの入力情報
+
+
 # > 　また、演算結果の最大、最小の処理は以下とする。
 # > 最大：演算結果＞ 3000 の場合
 # > 演算結果＝ 3000
 # > 最小：演算結果＜－3000 の場合
 # > 演算結果＝－3000
+# print('最大値、最小値')
 
-print('\n3.3.6.1 入力待ちモード、入力処理 2 モード')
+# calc.clear()
+# calc.click_string('501')
+# calc.click('asterisc', '*を入力')
+# calc.click('six', '6を入力')
+# calc.click('equal', '=を入力結果は3000')
 
+# calc.clear()
+# calc.click_string('501')
+# calc.click('plusandminus', '+-をクリック')
+# calc.click('asterisc', '*を入力')
+# calc.click('six', '6を入力')
+# calc.click('equal', '=を入力結果は-3000')
 
 # 3.4 制限事項
 # > テスト項目を記述するのが面倒になることが予想されるため、プログラムに入力できる最大、最小の数値は 999.999 と－999.999 に制限する。また、演算結果の最大、最小は、3000 と－3000 に制限する
-print('\n3.4 制限事項')
+# print('\n3.4 制限事項')
+# calc.clear()
+# calc.click_string('999.999')
+# calc.click('plus', '+を入力')
+# calc.click_string('999.999')
+# calc.click('equal', '=を入力。1999.998')
 
-calcchar = {'+': 'plus', '-': 'minus', '*': 'asterisc', '/': 'slush'}
-
-
-# def convert2input(input, output):
-#     """
-#     '1 + 3 = * 4 =' の場合
-#         eval        pyautogui
-#     1   1           typewrite(1)
-#     +   1 +         click('+')
-#     3   1 + 3       typewrite(3)
-#     =   r=eval(1+3) click('=')
-#     *   r *         click(*)
-#     4   r * 4       typewrite(4)
-#     =   r=eval(r*4) click('=')
-
-#     """
-#     result = 0
-#     target = ''
-
-#     input_list = input.split()
-#     for i in input_list:
-#         # if i not in ['+', '-', '*', '/', '=', '%']:
-#         #     print(f'type {i}')
-#         # else:
-#         #     print(f'click {i}')
-
-#         if i == '=':
-#             # calc.typewrite(str(target), f'{target}')
-#             calc.click('equal', '= was typed')
-#             result = eval(target)
-#             target = str(result)
-#         elif i in ['+', '-', '*', '/']:
-#             calc.click(self.calcchar[i], f'click {i}')
-#             target = target + i
-#         else:
-#             calc.typewrite(i, f'{i} was typed')
-#             target = target + i
-#     print(f'{input} : eval result {result} and result {output}')
-
-
-# convert2input('1 + 3 =', 4)
-# convert2input('1 + 3 = * 4 =', 16)
-# convert2input('1.5 + 3.3 = * 4 =', 19.2)
-# convert2input('999.999 * 999.999 =', 999998.000001)
+# calc.clear()
+# calc.click_string('999.999')
+# calc.click('plusandminus', '+-をクリック')
+# calc.click('minus', '-を入力')
+# calc.click_string('999.999')
+# calc.click('equal', '=を入力。-1999.998')
