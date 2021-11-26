@@ -1,5 +1,7 @@
-# from enum import Enum
-
+"""
+前提 ： Caluclator.pyを同じ位置において実行する必要がある。
+        新しい環境は、従来と同じ環境でもCaluclator.pyの位置を変える場合XY及びadj*で調整する必要がある。
+"""
 import math
 import random
 from decimal import ROUND_HALF_UP, Decimal
@@ -10,8 +12,11 @@ import pyautogui
 class Calc(object):
 
     def __init__(self) -> None:
+        """ pyautoguiの遷移をスムースにするために設定 """
         pyautogui.PAUSE = 0
 
+    """ テスト環境が2つあったため、テスト環境1の場合True、テスト
+    環境2の場合Falseにすることで環境を切り替え """
     if (True):
         adjx = 0
         adjy = 0
@@ -53,6 +58,7 @@ class Calc(object):
         'close': [285 + adjx, 45 + adjy]
     }
 
+    """ 記号からXYを利用するのにcalccharを利用 """
     calcchar = {
         '+': 'plus',
         '-': 'minus',
@@ -60,6 +66,7 @@ class Calc(object):
         '/': 'slash',
         '%': 'percent'}
 
+    """ 数字からXYを利用するのにzero2nineを利用 """
     zero2nine = [
         'zero',
         'one',
@@ -73,8 +80,8 @@ class Calc(object):
         'nine']
 
     def typewrite(self, input, message=False):
-        # self.moveTo('input')
-        # self.click()
+        """ 入力エリアの右端にカーソルをあわせてクリックしてからtypewrite()をコール
+        クリックを間違うと左側にアペンドされる形態で入力、表示されてしまう """
         pyautogui.click(
             self.XY['input'][0],
             self.XY['input'][1],
@@ -90,7 +97,9 @@ class Calc(object):
         self.clear()
 
     def click(self, pos=False, message=False):
-
+        """posが指定された場合posの位置でクリック。
+        指定が無い場合その場でクリック
+        """
         if pos:
 
             # print(f'{self.XY[pos][0]=}, {self.XY[pos][1]=}')
@@ -129,6 +138,12 @@ class Calc(object):
 
     def convert2input(self, input, output, func):
         """
+        input : '1 + 3 = * 4 ='というようなインプット。このインプットを
+                Calculator.pyに入力し、かつevalで計算する
+        output : 呼び出し元で想定される階を指定
+        func : Calculator.pyへの入力にあたりclickするかtypewriteするか指定。
+                関数を指定するが、想定するものはcalc.typewriteかcalc.click_stringのいずれか
+
         '1 + 3 = * 4 =' の場合
             eval        pyautogui
         1   1           typewrite(1)
@@ -168,6 +183,8 @@ class Calc(object):
         self.confirm(f'{input} : eval result {result} and result {output}')
 
     def click_string(self, str, message=''):
+        """  strで数字を指定する。この数字をクリックする
+        対象は数字だけ """
         # print(f'{str=}')
         for s in str:
             # print(f'{s=} {self.zero2nine[int(s)]}')
