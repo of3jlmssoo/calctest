@@ -15,74 +15,92 @@ import pyautogui
 class Calc(object):
 
     def __init__(self) -> None:
+        """
+        変数
+        self.XY : Caluclator.py の入力エリアやボタンの座標を定義
+        self.adx* : 座標を環境により調整する変数
+        self.calchar : +-*/%の演算子を'plus'等に変換する辞書。self.XY へのアクセス時に使う
+        self.zero2nine : 0-9 の数字を'zero'等に変換する辞書。self.XY へのアクセス時に使う
+        """
+
         """ pyautoguiの遷移をスムースにするために設定 """
         pyautogui.PAUSE = 0
 
-    """ テスト環境が2つあったため、テスト環境1の場合True、テスト
-    環境2の場合Falseにすることで環境を切り替え """
-    if (True):
-        adjx = 0
-        adjy = 0
-        adjx4input = 0
-        adjy4input = 0
-    else:
-        adjx = 50
-        adjy = 610
-        adjx4input = 233
-        adjy4input = 640
+        """ テスト環境が2つあったため、テスト環境1の場合True、テスト
+        環境2の場合Falseにすることで環境を切り替え """
+        if (True):
+            self.adjx = 0
+            self.adjy = 0
+            self.adjx4input = 0
+            self.adjy4input = 0
+        else:
+            self.adjx = 50
+            self.adjy = 610
+            self.adjx4input = 233
+            self.adjy4input = 640
 
-    XY = {
-        'plus': [51 + adjx, 125 + adjy],
-        'minus': [126 + adjx, 125 + adjy],
-        'asterisc': [183 + adjx, 125 + adjy],
-        'slash': [242 + adjx, 125 + adjy],
-        'one': [51 + adjx, 190 + adjy],
-        'two': [126 + adjx, 190 + adjy],
-        'three': [183 + adjx, 190 + adjy],
-        'equal': [242 + adjx, 190 + adjy],
-        'four': [51 + adjx, 248 + adjy],
-        'five': [126 + adjx, 248 + adjy],
-        'six': [183 + adjx, 248 + adjy],
-        'clear': [242 + adjx, 248 + adjy],
-        'seven': [51 + adjx, 312 + adjy],
-        'eight': [126 + adjx, 312 + adjy],
-        'nine': [183 + adjx, 312 + adjy],
-        'zero': [242 + adjx, 312 + adjy],
-        'period': [51 + adjx, 368 + adjy],
-        'root': [126 + adjx, 368 + adjy],
-        'percent': [183 + adjx, 368 + adjy],
-        'plusandminus': [242 + adjx, 368 + adjy],
+        self.XY = {
+            'plus': [51 + self.adjx, 125 + self.adjy],
+            'minus': [126 + self.adjx, 125 + self.adjy],
+            'asterisc': [183 + self.adjx, 125 + self.adjy],
+            'slash': [242 + self.adjx, 125 + self.adjy],
+            'one': [51 + self.adjx, 190 + self.adjy],
+            'two': [126 + self.adjx, 190 + self.adjy],
+            'three': [183 + self.adjx, 190 + self.adjy],
+            'equal': [242 + self.adjx, 190 + self.adjy],
+            'four': [51 + self.adjx, 248 + self.adjy],
+            'five': [126 + self.adjx, 248 + self.adjy],
+            'six': [183 + self.adjx, 248 + self.adjy],
+            'clear': [242 + self.adjx, 248 + self.adjy],
+            'seven': [51 + self.adjx, 312 + self.adjy],
+            'eight': [126 + self.adjx, 312 + self.adjy],
+            'nine': [183 + self.adjx, 312 + self.adjy],
+            'zero': [242 + self.adjx, 312 + self.adjy],
+            'period': [51 + self.adjx, 368 + self.adjy],
+            'root': [126 + self.adjx, 368 + self.adjy],
+            'percent': [183 + self.adjx, 368 + self.adjy],
+            'plusandminus': [242 + self.adjx, 368 + self.adjy],
 
-        # 入力エリアの右端にくるように調整する
-        'input': [246 + adjx4input, 77 + adjy4input],
+            # 入力エリアの右端にくるように調整する
+            'input': [246 + self.adjx4input, 77 + self.adjy4input],
 
-        'flip': [235 + adjx, 45 + adjy],
-        'min': [262 + adjx, 45 + adjy],
-        'close': [285 + adjx, 45 + adjy]
-    }
+            'flip': [235 + self.adjx, 45 + self.adjy],
+            'min': [262 + self.adjx, 45 + self.adjy],
+            'close': [285 + self.adjx, 45 + self.adjy]
+        }
 
-    """ 記号からXYを利用するのにcalccharを利用 """
-    calcchar = {
-        '+': 'plus',
-        '-': 'minus',
-        '*': 'asterisc',
-        '/': 'slash',
-        '%': 'percent'}
+        """ 記号からXYを利用するのにcalccharを利用 """
+        self.calcchar = {
+            '+': 'plus',
+            '-': 'minus',
+            '*': 'asterisc',
+            '/': 'slash',
+            '%': 'percent'}
 
-    """ 数字からXYを利用するのにzero2nineを利用 """
-    zero2nine = [
-        'zero',
-        'one',
-        'two',
-        'three',
-        'four',
-        'five',
-        'six',
-        'seven',
-        'eight',
-        'nine']
+        """ 数字からXYを利用するのにzero2nineを利用 """
+        self.zero2nine = [
+            'zero',
+            'one',
+            'two',
+            'three',
+            'four',
+            'five',
+            'six',
+            'seven',
+            'eight',
+            'nine']
 
     def typewrite(self, input, message=False):
+        """
+        inputとして指定された式を入力する
+
+        変数
+        input : '1 + 2 ='というような式の文字列。pyautogui.typewrie()への
+                インプットとなる
+        message : inputに伴うメッセージの文字列。self.confirm()への
+                インプットとなる。
+        """
+
         """
         入力エリアの右端にカーソルをあわせてクリックしてからtypewrite()をコール
         クリック位置を間違うと左側にアペンドされる形態で入力、表示されてしまう。
@@ -98,12 +116,29 @@ class Calc(object):
             self.confirm(message)
 
     def typewrite_clear(self, input, message=False):
+        """
+        inputとして指定された式を入力し、その後クリアする
+
+        変数
+        input : '1 + 2 ='というような式の文字列。pyautogui.typewrie()への
+                インプットとなる
+        message : inputに伴うメッセージの文字列。self.typewrite()への
+                  インプットとなる
+        """
+
         self.typewrite(input, message)
         self.clear()
 
     def click(self, pos=False, message=False):
         """posが指定された場合posの位置でクリック。
         指定が無い場合その場でクリック
+
+        posにはself.XYのキーを指定する。キーに対応する座標位置ででクリックを行う。
+
+        変数
+        pos : self.XYのキー。キーが有効か無効か判断するロジックを追加したほうが良い。
+        message : def click()の最後でself.confirmを呼出し、
+                  messageを引数として指定している
         """
         if pos:
 
@@ -121,14 +156,31 @@ class Calc(object):
             self.confirm(message)
 
     def click_clear(self, pos, message=False):
+        """
+        self.click()にposをmessageを渡し、その後self.clear()をコールしてCをクリックする
+
+        変数
+        pos : self.XYのキー。self.click()へのインプットとなる
+        message : メッセージ。self.click()へのインプットとなる
+        """
         self.click(pos, message)
         self.clear()
 
     def moveTo(self, pos):
+        """
+        指定されたposへ移動する
+
+        変数
+        pos: self.XYのキー。pyautogui.moveToへのインプットとなる
+        """
+
         # print(self.XY[pos][0], self.XY[pos][1])
         pyautogui.moveTo(self.XY[pos][0], self.XY[pos][1])
 
     def clear(self):
+        """
+        クリアをクリックする
+        """
         pyautogui.click(
             self.XY['clear'][0],
             self.XY['clear'][1],
@@ -137,25 +189,35 @@ class Calc(object):
             button='left')
 
     def confirm(self, message):
+        """
+        pyautoguiのconfirmをコールし、messageを表示。同じ内容をコンソールに表示する
+
+        変数
+        message: pyautoguiのconfirmへ渡し、かつ、コンソールに表示されるメッセージ
+        """
+
         result = pyautogui.confirm(message)
         print(f'{message} {result}')
 
     def convert2input(self, input, output, func):
         """
-        input   : '1 + 3 = * 4 ='というようなインプット。このインプットを
-                  Calculator.pyに入力し、かつevalで計算する
-        output  : 呼び出し元で想定される解を指定
-        func    : Calculator.pyへの入力にあたりcalc.typewriteかcalc.click_stringのいずれかを指定
+        inputで指定された式をCalculator.pyに入力する
+
+        変数
+        input: '1 + 3 = * 4 ='というようなインプット。
+        このインプットをCalculator.pyに入力し、かつevalで計算する
+        output: 呼び出し元が想定される解をoutputとして指定
+        func: Calculator.pyへの入力にあたりcalc.typewriteかcalc.click_stringのいずれかを指定
 
         '1 + 3 = * 4 =' の場合
-            eval        pyautogui
+        eval        pyautogui
         1   1           typewrite(1)
-        +   1 +         click('+')
+        +   1 + click('+')
         3   1 + 3       typewrite(3)
-        =   r=eval(1+3) click('=')
-        *   r *         click(*)
+        =   r = eval(1 + 3) click('=')
+        *   r * click(*)
         4   r * 4       typewrite(4)
-        =   r=eval(r*4) click('=')
+        =   r = eval(r * 4) click('=')
 
         """
         result = 0
@@ -180,13 +242,15 @@ class Calc(object):
                 target = target + i
         self.confirm(f'{input} : eval result {result} and result {output}')
 
-    def click_string(self, str, message=''):
+    def click_string(self, strnum, message=''):
         """
-        strで数字を指定する。この数字をクリックする
-        対象は数字だけ
+        strnumで指定した数字をCalculator.pyへ入力する。 指定できるのは数字1組のみ
+
+        変数
+        strnum: '123'というような数字を一組だけ指定する
+        message: 最後にself.confirmをコールしている。その際messageが渡される
         """
-        # print(f'{str=}')
-        for s in str:
+        for s in strnum:
             # print(f'{s=} {self.zero2nine[int(s)]}')
             if s == '.':
                 self.click('period')
@@ -194,8 +258,8 @@ class Calc(object):
             if s in '0123456789':
                 self.click(self.zero2nine[int(s)])
                 continue
-            print(f'input {str} is valid?')
-        self.confirm(f'{str} typed')
+            print(f'input {strnum} is valid?')
+        self.confirm(f'{strnum} typed')
 
 
 calc = Calc()
@@ -800,9 +864,9 @@ def keep_time():
 
 
 keep_time()
-# test31() # script  -c 'python ../test.py' test31.log
+# test31()  # script  -c 'python ../test.py' test31.log
 
-# test3211() # script  -c 'python ../test.py' test32.log
+# test3211()  # script  -c 'python ../test.py' test32.log
 # test3212()
 # test3213()
 # test3214()
@@ -815,11 +879,11 @@ keep_time()
 
 # test331()  # script  -c 'python ../test.py' test331.log
 
-# test3321() # script  -c 'python ../test.py' test332.log
+# test3321()  # script  -c 'python ../test.py' test332.log
 # test3322()
 
 # test3331()  # script  -c 'python ../test.py' test3331.log
-# test3332() # script  -c 'python ../test.py' test3332.log
+# test3332()  # script  -c 'python ../test.py' test3332.log
 
 # test3341()  # script  -c 'python ../test.py' test334.log
 
@@ -827,4 +891,4 @@ keep_time()
 
 # test3361()  # script  -c 'python ../test.py' test336.log
 
-test34() # script  -c 'python ../test.py' test34.log
+test34()  # script  -c 'python ../test.py' test34.log
