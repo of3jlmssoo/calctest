@@ -1,0 +1,7 @@
+Script started on 2021-11-28 11:22:05+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="147" LINES="34"]
+
+2021-11-28 11:22:05.320758
+3.3.1 初期処理 プログラムを開始すると、入力待ちモードに遷移する。また、「＝」ボタンは無効化する。
+Calculator.py実施直後に確認済み
+
+Script done on 2021-11-28 11:22:05+09:00 [COMMAND_EXIT_CODE="0"]

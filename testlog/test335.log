@@ -1,0 +1,17 @@
+Script started on 2021-11-28 15:42:54+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="127" LINES="34"]
+
+2021-11-28 15:42:54.452542
+3.3.5 クリアイベント
+1 + 2 Cが入力で、Cがクリックされた時点で=のみ無効であることを確認する OK
+1 typed OK
+click + OK
+2 typed OK
+1 + 2 C : eval result 0 and result 0 OK
+入力待ちモード。=だけ無効化されていることを確認する Cancel
+3 typed OK
+click + OK
+4 typed OK
+= was typed OK
+3 + 4 = : eval result 7 and result 7 OK
+
+Script done on 2021-11-28 15:43:12+09:00 [COMMAND_EXIT_CODE="0"]

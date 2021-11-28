@@ -1,0 +1,38 @@
+Script started on 2021-11-28 15:29:38+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="127" LINES="34"]
+
+2021-11-28 15:29:38.373920
+3.3.4.1 入力待ちモード、入力処理 1 モード、入力処理 2 モード
+100
+rootをクリックしても何も起きない OK
+9をクリック OK
+rootをクリック。3.0 OK
+3をクリック OK
+rootをクリック。1.732 OK
+何も無い状態でプラス・マイナスを押す OK
+何も起きない OK
+456 typed OK
+456 to -456 OK
+123.456 typed OK
+123.456 to -123.456 OK
+0.000 typed OK
+0.000 to -0.000 OK
+999.999 typed OK
+999.999 to -999.999 OK
+456 typed OK
+マイナス OK
+プラス OK
+マイナス OK
+123.456 typed OK
+マイナス OK
+プラス OK
+マイナス OK
+0.000 typed OK
+マイナス OK
+プラス OK
+マイナス OK
+999.999 typed OK
+マイナス OK
+プラス OK
+マイナス OK
+
+Script done on 2021-11-28 15:30:15+09:00 [COMMAND_EXIT_CODE="0"]
